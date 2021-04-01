@@ -33,11 +33,6 @@ inputs:
     description: 'The git pull method used when pulling all changes from remote'
     default: '--ff-only'
     required: false
-  
-  commit-path-filter:
-    description: 'Path to use when checking commits'
-    default: ""
-    required: false
 
   preset:
     description: 'The preset from Conventional Changelog to use'
@@ -99,6 +94,11 @@ inputs:
 
   pre-changelog-generation:
     description: 'Path to the pre-changelog-generation script file'
+    required: false
+
+  commit-path-filter:
+    description: 'Path to use when checking commits'
+    default: ''
     required: false
 
 
