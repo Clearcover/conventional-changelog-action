@@ -132,7 +132,8 @@ async function run() {
       }
 
       // Generate the string changelog
-      const stringChangelog = await changelog.generateStringChangelog(tagPrefix, preset, newVersion, 1, config)
+      const rawCommitOpt = {path: commitPathFilter}
+      const stringChangelog = await changelog.generateStringChangelog(tagPrefix, preset, newVersion, 1, config, rawCommitOpt)
       core.info('Changelog generated')
       core.info(stringChangelog)
 
@@ -150,7 +151,7 @@ async function run() {
       // If output file === 'false' we don't write it to file
       if (outputFile !== 'false') {
         // Generate the changelog
-        await changelog.generateFileChangelog(tagPrefix, preset, newVersion, outputFile, releaseCount, config)
+        await changelog.generateFileChangelog(tagPrefix, preset, newVersion, outputFile, releaseCount, config, rawCommitOpt)
       }
 
       if (!skipCommit) {
