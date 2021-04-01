@@ -41,6 +41,7 @@ async function run() {
     const skipEmptyRelease = core.getInput('skip-on-empty').toLowerCase() === 'true'
     const conventionalConfigFile = core.getInput('config-file-path')
     const preChangelogGenerationFile = core.getInput('pre-changelog-generation')
+    const dryRun = core.getInput('dry-run')
 
     core.info(`Using "${preset}" preset`)
     core.info(`Using "${gitCommitMessage}" as commit message`)
@@ -53,6 +54,7 @@ async function run() {
     core.info(`Using "${outputFile}" as output file`)
     core.info(`Using "${conventionalConfigFile}" as config file`)
     core.info(`Using "${commitPathFilter}" as commit path filter`)
+    core.info(`Using "${dryRun}" as dry run`)
 
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)
@@ -175,8 +177,10 @@ async function run() {
       // Create the new tag
       await git.createTag(gitTag)
 
-      core.info('Push all changes')
-      await git.push()
+      if(!dryRun) {
+        core.info('Push all changes')
+        await git.push()
+      }
 
       // Set outputs so other actions (for example actions/create-release) can use it
       core.setOutput('changelog', stringChangelog)
