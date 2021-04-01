@@ -4,7 +4,8 @@ This action will bump version, tag commit and generate a changelog with conventi
 
 ## Fork Update
 
-Add support for monorepos by utilizing conventional-commit's path filter through `git-raw-commits` package.
+Add input `commit-path-filter` to support for monorepos by utilizing conventional-commit's path filter through `git-raw-commits` package.
+Add input `dry-run` to allow disabling git changes.
 
 `node_modules` is intentionally added to enable running as action directly. Alternative `@vercel/ncc` fails when compiling.
 
@@ -29,6 +30,7 @@ Add support for monorepos by utilizing conventional-commit's path filter through
 - **Optional** `config-file-path`: Path to the conventional changelog config file. If set, the preset setting will be ignored
 - **Optional** `pre-changelog-generation`: Path to the pre-changelog-generation script file. No hook by default.
 - **Optional** `commit-path-filter`: Path to use to filter out commits against. Useful for monorepos.
+- **Optional** `dry-run`: Boolean to enable git changes. Defaults to `'false'`.
 ### Pre-Commit hook
 
 > Function in a specified file will be run right before the git-add-git-commit phase, when the next
