@@ -46,13 +46,13 @@ async function run() {
     core.info(`Using "${gitCommitMessage}" as commit message`)
     core.info(`Using "${gitUserName}" as git user.name`)
     core.info(`Using "${gitUserEmail}" as git user.email`)
-    core.info(`Using "${commitPathFilter}" as commit path`)
     core.info(`Using "${releaseCount}" release count`)
     core.info(`Using "${versionFile}" as version file`)
     core.info(`Using "${versionPath}" as version path`)
     core.info(`Using "${tagPrefix}" as tag prefix`)
     core.info(`Using "${outputFile}" as output file`)
     core.info(`Using "${conventionalConfigFile}" as config file`)
+    core.info(`Using "${commitPathFilter}" as commit path filter`)
 
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)
