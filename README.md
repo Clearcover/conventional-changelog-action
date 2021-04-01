@@ -4,7 +4,9 @@ This action will bump version, tag commit and generate a changelog with conventi
 
 ## Fork Update
 
-Add support for monorepos by utilizing conventional-commit's path filter through `git-raw-commits` package
+Add support for monorepos by utilizing conventional-commit's path filter through `git-raw-commits` package.
+
+`node_modules` is intentionally added to enable running as action directly. Alternative `@vercel/ncc` fails when compiling.
 
 ## Inputs
 
