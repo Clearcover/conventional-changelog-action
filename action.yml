@@ -97,7 +97,7 @@ inputs:
     required: false
 
   commit-path-filter:
-    description: 'Path to use when checking commits'
+    description: 'Path to use to filter out commits against. Useful for monorepos'
     default: ''
     required: false
 

@@ -2,6 +2,10 @@
 
 This action will bump version, tag commit and generate a changelog with conventional commits.
 
+## Fork Update
+
+Add support for monorepos by utilizing conventional-commit's path filter through `git-raw-commits` package
+
 ## Inputs
 
 - **Required** `github-token`: Github token.
@@ -22,7 +26,7 @@ This action will bump version, tag commit and generate a changelog with conventi
 - **Optional** `fallback-version`: The fallback version, if no older one can be detected, or if it is the first one. Default `'0.1.0'`
 - **Optional** `config-file-path`: Path to the conventional changelog config file. If set, the preset setting will be ignored
 - **Optional** `pre-changelog-generation`: Path to the pre-changelog-generation script file. No hook by default.
-
+- **Optional** `commit-path-filter`: Path to use to filter out commits against. Useful for monorepos.
 ### Pre-Commit hook
 
 > Function in a specified file will be run right before the git-add-git-commit phase, when the next
