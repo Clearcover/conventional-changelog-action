@@ -28,6 +28,7 @@ async function run() {
     const gitCommitMessage = core.getInput('git-message')
     const gitUserName = core.getInput('git-user-name')
     const gitUserEmail = core.getInput('git-user-email')
+    const commitPathFilter = core.getInput('commit-path-filter')
     const tagPrefix = core.getInput('tag-prefix')
     const preset = !core.getInput('config-file-path') ? core.getInput('preset') : ''
     const preCommitFile = core.getInput('pre-commit')
@@ -45,6 +46,7 @@ async function run() {
     core.info(`Using "${gitCommitMessage}" as commit message`)
     core.info(`Using "${gitUserName}" as git user.name`)
     core.info(`Using "${gitUserEmail}" as git user.email`)
+    core.info(`Using "${commitPathFilter}" as commit path`)
     core.info(`Using "${releaseCount}" release count`)
     core.info(`Using "${versionFile}" as version file`)
     core.info(`Using "${versionPath}" as version path`)
@@ -68,7 +70,7 @@ async function run() {
 
     const config = conventionalConfigFile && requireScript(conventionalConfigFile)
 
-    conventionalRecommendedBump({ preset, tagPrefix, config }, async(error, recommendation) => {
+    conventionalRecommendedBump({ preset, tagPrefix, config , path: commitPathFilter}, async(error, recommendation) => {
       if (error) {
         core.setFailed(error.message)
         return
