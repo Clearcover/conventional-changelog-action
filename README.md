@@ -30,7 +30,7 @@ Add input `dry-run` to allow disabling git changes.
 - **Optional** `config-file-path`: Path to the conventional changelog config file. If set, the preset setting will be ignored
 - **Optional** `pre-changelog-generation`: Path to the pre-changelog-generation script file. No hook by default.
 - **Optional** `commit-path-filter`: Path to use to filter out commits against. Useful for monorepos.
-- **Optional** `dry-run`: Boolean to enable git changes. Defaults to `'false'`.
+- **Optional** `dry-run`: Boolean to enable git changes. Defaults to `'true'`.
 ### Pre-Commit hook
 
 > Function in a specified file will be run right before the git-add-git-commit phase, when the next
