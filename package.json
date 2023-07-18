@@ -37,6 +37,10 @@
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
+    "@vercel/ncc": "^0.36.1",
     "husky": "4.3.6"
+  },
+  "scripts": {
+    "build": "ncc build --source-map"
   }
 }
