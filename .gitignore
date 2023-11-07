@@ -1,5 +1,5 @@
 # comment this out distribution branches
-node_modules/
+# node_modules/
 
 # Editors
 .vscode
@@ -7,7 +7,6 @@ node_modules/
 # Logs
 logs
 *.log
-!fake-file.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
