@@ -11099,7 +11099,7 @@ module.exports.obj = obj
 
 const nodePath = __nccwpck_require__(1017)
 
-module.exports = presetLoader(() =>  __nccwpck_require__(8761))
+module.exports = presetLoader((preset) =>  __nccwpck_require__(7025)(preset))
 module.exports.presetLoader = presetLoader
 
 function presetLoader (requireMethod) {
@@ -63226,6 +63226,27 @@ module.exports = new (class Git {
 
 /***/ }),
 
+/***/ 7025:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const conventionalCommitsPreset = __nccwpck_require__(8761)
+const angularPreset = __nccwpck_require__(8761)
+
+module.exports = function requirePreset(preset) {
+  const presetWithoutPrefix = preset.replace('conventional-changelog-', '')
+  switch (presetWithoutPrefix) {
+    case 'conventionalcommits':
+      return conventionalCommitsPreset
+    case 'angular':
+      return angularPreset
+    default:
+      throw new Error(`Preset "${presetWithoutPrefix}" is not supported`)
+  }
+}
+
+
+/***/ }),
+
 /***/ 4492:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -70458,8 +70479,8 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(2186)
 const conventionalRecommendedBump = __nccwpck_require__(7011)
 const path = __nccwpck_require__(1017)
-// Do not remove: this ensures that the conventionalcommits preset is bundled - it gets referenced dynamically
-const conventionalCommitsPreset = __nccwpck_require__(8761)
+// Do not remove: this ensures that presets are bundled - they get referenced dynamically
+const requirePresetHelper = __nccwpck_require__(7025)
 
 const getVersioning = __nccwpck_require__(6286)
 const git = __nccwpck_require__(4881)
@@ -70514,10 +70535,6 @@ async function run() {
     core.info(`Using "${conventionalConfigFile}" as config file`)
     core.info(`Using "${commitPathFilter}" as commit path filter`)
     core.info(`Using "${dryRun}" as dry run`)
-
-    if (preset && preset != 'conventionalcommits') {
-      throw new Error(`Preset "${preset}" is not supported`)
-    }
 
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)

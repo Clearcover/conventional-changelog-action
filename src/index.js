@@ -1,8 +1,8 @@
 const core = require('@actions/core')
 const conventionalRecommendedBump = require('conventional-recommended-bump')
 const path = require('path')
-// Do not remove: this ensures that the conventionalcommits preset is bundled - it gets referenced dynamically
-const conventionalCommitsPreset = require('conventional-changelog-conventionalcommits')
+// Do not remove: this ensures that presets are bundled - they get referenced dynamically
+const requirePresetHelper = require('./helpers/presetLoader')
 
 const getVersioning = require('./version')
 const git = require('./helpers/git')
@@ -57,10 +57,6 @@ async function run() {
     core.info(`Using "${conventionalConfigFile}" as config file`)
     core.info(`Using "${commitPathFilter}" as commit path filter`)
     core.info(`Using "${dryRun}" as dry run`)
-
-    if (preset && preset != 'conventionalcommits') {
-      throw new Error(`Preset "${preset}" is not supported`)
-    }
 
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)
