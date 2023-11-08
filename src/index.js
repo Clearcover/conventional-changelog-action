@@ -1,6 +1,8 @@
 const core = require('@actions/core')
 const conventionalRecommendedBump = require('conventional-recommended-bump')
 const path = require('path')
+// Do not remove: this ensures that the conventionalcommits preset is bundled - it gets referenced dynamically
+const conventionalCommitsPreset = require('conventional-changelog-conventionalcommits')
 
 const getVersioning = require('./version')
 const git = require('./helpers/git')
