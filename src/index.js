@@ -58,6 +58,10 @@ async function run() {
     core.info(`Using "${commitPathFilter}" as commit path filter`)
     core.info(`Using "${dryRun}" as dry run`)
 
+    if (preset && preset != 'conventionalcommits') {
+      throw new Error(`Preset "${preset}" is not supported`)
+    }
+
     if (preCommitFile) {
       core.info(`Using "${preCommitFile}" as pre-commit script`)
     }
