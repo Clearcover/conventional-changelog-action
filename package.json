@@ -41,6 +41,6 @@
     "husky": "4.3.6"
   },
   "scripts": {
-    "build": "ncc build --source-map"
+    "build": "ncc build --source-map && ./patch-preset-loader.sh"
   }
 }

@@ -11099,7 +11099,7 @@ module.exports.obj = obj
 
 const nodePath = __nccwpck_require__(1017)
 
-module.exports = presetLoader(require)
+module.exports = presetLoader(() =>  __nccwpck_require__(8761))
 module.exports.presetLoader = presetLoader
 
 function presetLoader (requireMethod) {
