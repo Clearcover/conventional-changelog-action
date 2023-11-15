@@ -9,7 +9,7 @@ ncc angular
 ncc atom
 ncc conventionalcommits
 ncc codemirror
-ncc corencc ember
+ncc ember
 ncc eslint
 ncc express
 ncc jquery
