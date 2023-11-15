@@ -41,6 +41,9 @@
     "husky": "4.3.6"
   },
   "scripts": {
-    "build": "ncc build --source-map && ./patch-preset-loader.sh"
+    "build": "npm run clean && npm run build:action && npm run build:presets",
+    "clean": "rm -rf ./dist",
+    "build:action": "ncc build --source-map && ./patch-preset-loader.sh",
+    "build:presets": "./build-presets.sh"
   }
 }
