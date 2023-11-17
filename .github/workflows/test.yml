@@ -116,6 +116,7 @@ jobs:
           path: "./"
 
       - run: npm ci --prod
+      - run: touch ./fake-file.log
       - run: "git config --global user.email 'changelog@github.com'"
       - run: "git config --global user.name 'Awesome Github action'"
 
@@ -556,3 +557,38 @@ jobs:
           else
             echo "Changelog config not applied" && exit 1
           fi
+
+  test-conventionalcommits-preset:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: "./"
+
+      - run: npm ci --prod
+      - run: touch ./fake-file.log
+      - run: "git config --global user.email 'changelog@github.com'"
+      - run: "git config --global user.name 'Awesome Github action'"
+      - run: "git add . && git commit -m 'feat: Added fake file so version will be bumped'"
+
+      - name: Generate Changelog
+        id: changelog
+        uses: ./
+        env:
+          ENV: 'dont-use-git'
+          EXPECTED_TAG: 'v1.5.0'
+        with:
+          github-token: ${{ secrets.github_token }}
+          version-file: 'test-file.json'
+          preset: 'conventionalcommits'
+
+      - name: Show file
+        run: |
+          echo "$(<test-file.json)"
+
+      - name: Test output
+        run: node ./test-output.js
+        env:
+          FILES: 'test-file.json'
+          EXPECTED_VERSION: '1.5.0'
